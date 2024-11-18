@@ -8,7 +8,6 @@ const typeDefs = require('./graphql/schema');
 const resolvers = require('./graphql/resolvers');
 const authRoutes = require('./routes/authRoutes');
 const Usuario = require('./models/clienteModel'); 
-const bcrypt = require('bcrypt'); 
 const cors = require('cors');
 
 
@@ -29,9 +28,6 @@ app.post('/api/register', async (req, res) => {
   const { nombre, email, telefono, contraseña } = req.body;
 
   try {
-    // Encriptar la contraseña antes de guardarla
-    const hashedPassword = await bcrypt.hash(contraseña, 10);
-
     // Crear un nuevo usuario
     const nuevoUsuario = new Usuario({
       nombre,
